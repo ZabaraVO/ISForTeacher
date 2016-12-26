@@ -1,0 +1,106 @@
+﻿
+@{
+    @model List<Theme>
+
+    @helper addCellRedactor(Attendance att)
+    {
+char visitType = att.visitType[0];
+string text = "selected = \"selected\"";
+    <select class="cellRedactor" studentId="@att.idStudent" workId="@att.idWork">
+        <option value=" " @{ if (visitType == 'п') { @text   } }></option>
+        <option value="б" @{ if (visitType == 'б') { @text   } }>б</option>
+        <option value="н" @{ if (visitType == 'н') { @text   } }>н</option>
+    </select>
+}
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <!--<meta charset="utf-8">-->
+    <link href="~/Content/styles/attenTable.css" rel="stylesheet" />
+    <title>Посещаемость</title>
+</head>
+<body>
+    <div id="subjectAndGroupName">
+        <h1>@ViewBag.SubjectName</h1>
+        <h2>@ViewBag.GroupName</h2>
+    </div>
+    <table id="attendances">
+        <tr>
+            <td rowspan="2"></td>
+            @{
+                foreach (Theme theme in Model)
+                {
+                    int workNumber = theme.Work.Count;
+                    <td colspan="@workNumber.ToString()" class="themeName hiddenTextContainer">@theme.NameTheme</td>
+                }
+            }
+        </tr>
+        <tr>
+            @{
+                foreach (Theme theme in Model)
+                {
+                    int lectCount = 0;
+                    int practCount = 0;
+                    foreach (Work work in theme.Work)
+                    {
+                        string content = "";
+                        if (work.Type[0] == 'л')
+                        {
+                            lectCount++;
+                            content += "Лек. " + lectCount.ToString();
+                        }
+                        if (work.Type[0] == 'п')
+                        {
+                            practCount++;
+                            content += "Пр. " + practCount.ToString();
+                        }
+                        <td>@content</td>
+                    }
+                }
+            }
+        </tr>
+        @{
+            Dictionary<Student, List<Attendance>> attsDictionary = new Dictionary<Student, List<Attendance>>();
+            foreach (Student student in ViewBag.Students)
+            {
+                <tr>
+                    @{
+                        List<Attendance> attsToDictionary = new List<Attendance>();
+                        <td>@student.FIO</td>
+                        foreach (Theme theme in Model)
+                        {
+                            foreach (Work work in theme.Work)
+                            {
+                                Attendance att = work.Attendance.First(a => a.Student == student);
+                                <td>@addCellRedactor(att)</td>
+                                attsToDictionary.Add(att);
+                            }
+                        }
+                        attsDictionary.Add(student, attsToDictionary);
+                    }
+                </tr>
+                        }
+        }
+    </table>
+    <div id="save" class="greenButton"><p>Сохранить изменения</p></div>
+    <a class="nonDecoratedLink" href="@Url.Action(
+                actionName: "Index",
+                controllerName: "QuestionsGenerator",
+                routeValues: new
+                {
+                    groupId = ViewBag.GroupId,
+                    subjectId = ViewBag.SubjectId,
+                    cancelLink = Request.RawUrl
+                }
+            )">
+        <div id="generateQuestions" class="greenButton"><p>Сгенерировать вопросы</p></div>
+    </a>
+</body>
+</html>
+
+<script src="~/scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="~/scripts/attendancesSaving.js" type="text/javascript"></script>

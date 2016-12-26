@@ -1,0 +1,69 @@
+﻿#subjectAndGroupName{
+	margin: 0 auto;
+	margin-top:10px;
+	width:100%;
+	text-align:center;
+}
+
+#subjectAndGroupName h1,h2{
+	color:#3399CC;
+}
+
+#attendances{
+	margin: 0 auto;
+	margin-top:10px;
+}
+
+table, td{
+	border: 2px solid blue;
+	border-collapse: collapse;
+	padding:5px;
+	text-align:center;
+}
+
+td{
+	width:50px;
+}
+
+.cellRedactor{
+	width:100%;
+	text-align:center;
+}
+
+.hiddenTextContainer{
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.themeName{
+	max-width: 200px;
+}
+
+.subjectName{
+	max-width: 200px;
+}
+
+.greenButton{
+	width:200px;
+	height:30px;
+	text-align:center;
+	background-color:#93F480;
+	border:3px solid #28BE0B;
+	border-radius:5px;
+	margin:0 auto;
+	margin-top:10px;
+	display: table;
+	cursor: pointer;
+}
+
+.greenButton p{
+	font-size:15px;
+    display:table-cell;
+    vertical-align: middle;
+}
+
+a.nonDecoratedLink{
+    text-decoration:none;
+    color: black;
+}

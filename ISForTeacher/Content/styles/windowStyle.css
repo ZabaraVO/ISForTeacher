@@ -1,0 +1,291 @@
+﻿#window{
+	display:block;
+	width:340px;
+	//background-color:green;
+	//max-width:400px;
+	margin: 0 auto;
+	margin-top:100px;
+}
+
+div.square{
+	background: rgba(0, 157, 217, .2);
+    //color: rgba(0, 0, 0, .8);
+	border:1px solid black;
+}
+
+p.header{
+	float:left;
+	font-family:arial;
+	color:#3399CC;
+}
+
+#head{
+	//display:inline-block;
+	//background-color:blue;
+	margin: 0 auto;
+}
+
+#firstLine{
+	width:400px;
+	display:inline-block;
+	//background-color:yellow;
+	overflow:hidden;
+	margin-left:35px;
+}
+
+#firstSquare{
+	width:35px;
+	height:35px;
+	float:left;
+	//background-color:green;
+	display:inline-block;
+}
+
+#smallHeader{
+	font-size:15px;
+	margin-left:5px;
+	display:inline-block;
+	float:left;
+}
+
+#secondLine{
+	width:500px;
+	display:inline-block;
+	//background-color:red;
+	//overflow:hidden;
+	margin-top:-35px;
+}
+
+#secondSquare{
+	width:50px;
+	height:50px;
+	float:left;
+}
+
+#bigHeader{
+	font-size:30px;
+	margin-left:10px;
+	margin-bottom:20px;
+}
+
+#inputText{
+	display:block;
+	width:200px;
+	height:30px;
+	margin-left:60px;
+	font-size:20px
+}
+
+#selectionButtons{
+	width:380px;
+	margin-left:-30px;
+	height:40px;
+	//background-color:green;
+	padding-bottom:25px;
+}
+
+div.selectionButton{
+	width:170px;
+	height:30px;
+	display:inline-table;
+	border: 2px solid #33CCFF;
+	text-align:center;
+	padding:2px;
+}
+
+div.selectionButton p{
+	font-weight:bold;
+	font-family:arial;
+	display:table-cell;
+	vertical-align:middle;
+	//line-height:30px;
+	color:#0066CC;
+}
+
+#selectAll{
+	float:left;
+    cursor:pointer;
+}
+
+#unselectAll{
+	float:right;
+    cursor:pointer;
+}
+
+#elementsContainer{
+	//display:inline-block;
+	width:300px;
+	//overflow:hidden;
+	//background-color:red;
+	margin-top:-15px
+}
+
+div.element{
+	display:inline-table;
+	width:155px;
+	height:30px;
+	border: 2px solid #33CCFF;
+	//margin:0 auto;
+	margin-left:80px;
+	text-align:center;
+	margin-top:15px;
+    cursor:pointer;
+}
+
+div.selectedElem{
+    background-color:#c5e6f6;
+}
+
+div.element p{
+	font-family:arial;
+	font-size:15px;
+	color:#0066CC;
+	display:table-cell;
+	vertical-align:middle;
+	margin:0 auto;
+}
+
+#thirdLine{
+	//display:inline-block;
+	//background-color:yellow;
+	width:400px;
+	margin-top:10px;
+}
+
+#elementsListControlls{
+	//background-color:red;
+	display:inline-block;
+	overflow:hidden;
+	margin-left:130px;
+	margin-top:30px;
+	width:60px;
+}
+
+#generateQuestions{
+	width:30px;
+	height:39px;
+	display:block;
+	margin:0 auto;
+    cursor:pointer;
+}
+
+img.elementsListButton{
+	width:23px;
+	height:23px;
+}
+
+#add{
+	float:left;
+}
+
+#remove{
+	//margin-left:10px;
+	float:right;
+}
+
+#movingControlls{
+	margin-left:10px;
+	background-color:yellow;
+	//width:200px;
+	display:inline;
+}
+
+#movingControlls p{
+	display:inline;
+	font-size:15px;
+	//font-family:arial;
+	//margin-left:0px;
+}
+
+#backAndCancelContainer{
+	float:left;
+	width:110px;
+	height:1px;
+	//background-color:red;
+	//margin-left:20px;
+}
+
+#backAndCancelContainer a{
+	float:right;
+}
+
+#cancel{
+	margin-left:10px;
+}
+
+#fakeElem2{
+	//background-color:red;
+	float:right;
+	width:40px;
+	height:1px;
+}
+
+#rightBottomControlls{
+	//float:right;
+	margin-left:105px;
+	//display:inline;
+	//background-color:green;
+	float:left;
+}
+
+#fakeElem{
+	width:40px;
+	height:35px;
+	display:inline-block;
+	margin-top:10px;
+}
+
+#thirdSquare{
+	width:33px;
+	height:33px;
+	display:inline-block;
+	//margin-bottom:-15px;
+	margin-left:-15px;
+	float:left;
+}
+
+#forthSquare{
+	width:20px;
+	height:20px;
+	display:inline-block;
+	//margin-right:-15px;
+	margin-top:23px;
+	float:left;
+}
+
+#settings{
+	width:23px;
+	height:23px;
+    cursor:pointer;
+}
+
+#settingsItems{
+	width:100px;
+	height:70px;
+	display:inline-block;
+	float:left;
+	margin-left:-35px;
+	border:1px solid black;
+	background-color:white;
+	margin-top:23px;
+    display:none;
+}
+
+div.settingsItem{
+	height:35px;	
+	text-align:center;
+    font-size:13px;
+}
+
+div.settingsItem p{
+	color:#0066CC;
+}
+
+div.oneString{
+	line-height: 35px;
+}
+
+#settingsItem1{
+	border-bottom:1px solid black;
+}
+

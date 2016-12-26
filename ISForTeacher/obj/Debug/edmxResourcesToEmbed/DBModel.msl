@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AttendancesModelStoreContainer" CdmEntityContainer="AttendancesEntities">
+    <EntitySetMapping Name="Attendance">
+      <EntityTypeMapping TypeName="AttendancesModel.Attendance">
+        <MappingFragment StoreEntitySet="Attendance">
+          <ScalarProperty Name="visitType" ColumnName="visitType" />
+          <ScalarProperty Name="idStudent" ColumnName="idStudent" />
+          <ScalarProperty Name="idWork" ColumnName="idWork" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Question">
+      <EntityTypeMapping TypeName="AttendancesModel.Question">
+        <MappingFragment StoreEntitySet="Question">
+          <ScalarProperty Name="idQuestion" ColumnName="idQuestion" />
+          <ScalarProperty Name="TextQuestion" ColumnName="TextQuestion" />
+          <ScalarProperty Name="idWork" ColumnName="idWork" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Student">
+      <EntityTypeMapping TypeName="AttendancesModel.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="FIO" ColumnName="FIO" />
+          <ScalarProperty Name="idStudent" ColumnName="idStudent" />
+          <ScalarProperty Name="id_group" ColumnName="id_group" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StudyGroup">
+      <EntityTypeMapping TypeName="AttendancesModel.StudyGroup">
+        <MappingFragment StoreEntitySet="StudyGroup">
+          <ScalarProperty Name="id_group" ColumnName="id_group" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="TeacherLogin" ColumnName="TeacherLogin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subject">
+      <EntityTypeMapping TypeName="AttendancesModel.Subject">
+        <MappingFragment StoreEntitySet="Subject">
+          <ScalarProperty Name="id_subject" ColumnName="id_subject" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="TeacherLogin" ColumnName="TeacherLogin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teacher">
+      <EntityTypeMapping TypeName="AttendancesModel.Teacher">
+        <MappingFragment StoreEntitySet="Teacher">
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Theme">
+      <EntityTypeMapping TypeName="AttendancesModel.Theme">
+        <MappingFragment StoreEntitySet="Theme">
+          <ScalarProperty Name="id_theme" ColumnName="id_theme" />
+          <ScalarProperty Name="NameTheme" ColumnName="NameTheme" />
+          <ScalarProperty Name="id_subject" ColumnName="id_subject" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Work">
+      <EntityTypeMapping TypeName="AttendancesModel.Work">
+        <MappingFragment StoreEntitySet="Work">
+          <ScalarProperty Name="idWork" ColumnName="idWork" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="id_theme" ColumnName="id_theme" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="GroupSubject" TypeName="AttendancesModel.GroupSubject" StoreEntitySet="GroupSubject">
+      <EndProperty Name="StudyGroup">
+        <ScalarProperty Name="id_group" ColumnName="id_group" />
+      </EndProperty>
+      <EndProperty Name="Subject">
+        <ScalarProperty Name="id_subject" ColumnName="id_subject" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

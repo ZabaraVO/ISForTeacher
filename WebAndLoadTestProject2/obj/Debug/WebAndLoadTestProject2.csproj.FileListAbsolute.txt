@@ -1,0 +1,8 @@
+Q:\Документы\Учебники\ДЗ\Инструментальные средства ИС\ISForTeacher\WebAndLoadTestProject2\bin\Debug\WebTest1.webtest
+Q:\Документы\Учебники\ДЗ\Инструментальные средства ИС\ISForTeacher\WebAndLoadTestProject2\bin\Debug\WebAndLoadTestProject2.dll
+Q:\Документы\Учебники\ДЗ\Инструментальные средства ИС\ISForTeacher\WebAndLoadTestProject2\bin\Debug\WebAndLoadTestProject2.pdb
+Q:\Документы\Учебники\ДЗ\Инструментальные средства ИС\ISForTeacher\WebAndLoadTestProject2\bin\Debug\Microsoft.VisualStudio.QualityTools.WebTestFramework.dll
+Q:\Документы\Учебники\ДЗ\Инструментальные средства ИС\ISForTeacher\WebAndLoadTestProject2\bin\Debug\Microsoft.VisualStudio.QualityTools.WebTestFramework.xml
+Q:\Документы\Учебники\ДЗ\Инструментальные средства ИС\ISForTeacher\WebAndLoadTestProject2\obj\Debug\WebAndLoadTestProject2.csprojResolveAssemblyReference.cache
+Q:\Документы\Учебники\ДЗ\Инструментальные средства ИС\ISForTeacher\WebAndLoadTestProject2\obj\Debug\WebAndLoadTestProject2.dll
+Q:\Документы\Учебники\ДЗ\Инструментальные средства ИС\ISForTeacher\WebAndLoadTestProject2\obj\Debug\WebAndLoadTestProject2.pdb

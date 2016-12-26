@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8cf409c10e3b49f197f6d8db796deac5" Name="Diagram1">
+        <EntityTypeShape EntityType="AttendancesModel.Attendance" Width="1.5" PointX="7.5" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendancesModel.Question" Width="1.5" PointX="12" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendancesModel.Student" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendancesModel.StudyGroup" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendancesModel.Subject" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendancesModel.Teacher" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendancesModel.Theme" Width="1.5" PointX="7.5" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AttendancesModel.Work" Width="1.5" PointX="9.75" PointY="7.625" IsExpanded="true" />
+        <AssociationConnector Association="AttendancesModel.R_19" ManuallyRouted="false" />
+        <AssociationConnector Association="AttendancesModel.R_24" ManuallyRouted="false" />
+        <AssociationConnector Association="AttendancesModel.R_12" ManuallyRouted="false" />
+        <AssociationConnector Association="AttendancesModel.R_9" ManuallyRouted="false" />
+        <AssociationConnector Association="AttendancesModel.R_22" ManuallyRouted="false" />
+        <AssociationConnector Association="AttendancesModel.R_10" ManuallyRouted="false" />
+        <AssociationConnector Association="AttendancesModel.R_23" ManuallyRouted="false" />
+        <AssociationConnector Association="AttendancesModel.R_11" ManuallyRouted="false" />
+        <AssociationConnector Association="AttendancesModel.GroupSubject" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,54 @@
+﻿
+@{
+    @model Dictionary<string, List<Work>>
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/styles/questionsList.css" rel="stylesheet" />
+    <title>Index</title>
+</head>
+<body>
+    <div id="infoContainer">
+        @{
+            foreach (KeyValuePair<string, List<Work>> kvp in Model)
+            {
+                <h1 class="fio">@kvp.Key</h1>
+                if (kvp.Value.Count == 0)
+                {
+                    <h3>Прогулов нет</h3>
+                }
+                <table class="questions">
+                    @foreach (Work work in kvp.Value)
+                    {
+                        <tr>
+                            <td>
+                                <ul>
+                                    <li><h3>Тема: @work.Theme.NameTheme</h3></li>
+                                    <li><h3>Подтема: @work.Name</h3></li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul>
+                                    @foreach(Question question in work.Question)
+                                    {
+                                        <li>
+                                            <p>@question.TextQuestion</p>
+                                        </li>
+                                    }
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+        }
+
+    </div>
+</body>
+</html>
+
+

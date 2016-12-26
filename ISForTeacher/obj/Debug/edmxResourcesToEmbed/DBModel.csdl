@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AttendancesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Attendance">
+    <Key>
+      <PropertyRef Name="idStudent" />
+      <PropertyRef Name="idWork" />
+    </Key>
+    <Property Name="visitType" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+    <Property Name="idStudent" Type="Int32" Nullable="false" />
+    <Property Name="idWork" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Student" Relationship="Self.R_19" FromRole="Attendance" ToRole="Student" />
+    <NavigationProperty Name="Work" Relationship="Self.R_24" FromRole="Attendance" ToRole="Work" />
+  </EntityType>
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="idQuestion" />
+    </Key>
+    <Property Name="idQuestion" Type="Int32" Nullable="false" />
+    <Property Name="TextQuestion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="idWork" Type="Int32" />
+    <NavigationProperty Name="Work" Relationship="Self.R_12" FromRole="Question" ToRole="Work" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="idStudent" />
+    </Key>
+    <Property Name="FIO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="idStudent" Type="Int32" Nullable="false" />
+    <Property Name="id_group" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Attendance" Relationship="Self.R_19" FromRole="Student" ToRole="Attendance" />
+    <NavigationProperty Name="StudyGroup" Relationship="Self.R_9" FromRole="Student" ToRole="StudyGroup" />
+  </EntityType>
+  <EntityType Name="StudyGroup">
+    <Key>
+      <PropertyRef Name="id_group" />
+    </Key>
+    <Property Name="id_group" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TeacherLogin" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="Student" Relationship="Self.R_9" FromRole="StudyGroup" ToRole="Student" />
+    <NavigationProperty Name="Teacher" Relationship="Self.R_22" FromRole="StudyGroup" ToRole="Teacher" />
+    <NavigationProperty Name="Subject" Relationship="Self.GroupSubject" FromRole="StudyGroup" ToRole="Subject" />
+  </EntityType>
+  <EntityType Name="Subject">
+    <Key>
+      <PropertyRef Name="id_subject" />
+    </Key>
+    <Property Name="id_subject" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TeacherLogin" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="Theme" Relationship="Self.R_10" FromRole="Subject" ToRole="Theme" />
+    <NavigationProperty Name="Teacher" Relationship="Self.R_23" FromRole="Subject" ToRole="Teacher" />
+    <NavigationProperty Name="StudyGroup" Relationship="Self.GroupSubject" FromRole="Subject" ToRole="StudyGroup" />
+  </EntityType>
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="login" />
+    </Key>
+    <Property Name="login" Type="String" MaxLength="100" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="StudyGroup" Relationship="Self.R_22" FromRole="Teacher" ToRole="StudyGroup" />
+    <NavigationProperty Name="Subject" Relationship="Self.R_23" FromRole="Teacher" ToRole="Subject" />
+  </EntityType>
+  <EntityType Name="Theme">
+    <Key>
+      <PropertyRef Name="id_theme" />
+    </Key>
+    <Property Name="id_theme" Type="Int32" Nullable="false" />
+    <Property Name="NameTheme" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="id_subject" Type="Int32" />
+    <NavigationProperty Name="Subject" Relationship="Self.R_10" FromRole="Theme" ToRole="Subject" />
+    <NavigationProperty Name="Work" Relationship="Self.R_11" FromRole="Theme" ToRole="Work" />
+  </EntityType>
+  <EntityType Name="Work">
+    <Key>
+      <PropertyRef Name="idWork" />
+    </Key>
+    <Property Name="idWork" Type="Int32" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+    <Property Name="id_theme" Type="Int32" />
+    <NavigationProperty Name="Attendance" Relationship="Self.R_24" FromRole="Work" ToRole="Attendance" />
+    <NavigationProperty Name="Question" Relationship="Self.R_12" FromRole="Work" ToRole="Question" />
+    <NavigationProperty Name="Theme" Relationship="Self.R_11" FromRole="Work" ToRole="Theme" />
+  </EntityType>
+  <Association Name="R_19">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="idStudent" />
+      </Principal>
+      <Dependent Role="Attendance">
+        <PropertyRef Name="idStudent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="R_24">
+    <End Role="Work" Type="Self.Work" Multiplicity="1" />
+    <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Work">
+        <PropertyRef Name="idWork" />
+      </Principal>
+      <Dependent Role="Attendance">
+        <PropertyRef Name="idWork" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="R_12">
+    <End Role="Work" Type="Self.Work" Multiplicity="0..1" />
+    <End Role="Question" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Work">
+        <PropertyRef Name="idWork" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="idWork" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="R_9">
+    <End Role="StudyGroup" Type="Self.StudyGroup" Multiplicity="1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudyGroup">
+        <PropertyRef Name="id_group" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="id_group" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="R_22">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
+    <End Role="StudyGroup" Type="Self.StudyGroup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="login" />
+      </Principal>
+      <Dependent Role="StudyGroup">
+        <PropertyRef Name="TeacherLogin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="R_10">
+    <End Role="Subject" Type="Self.Subject" Multiplicity="0..1" />
+    <End Role="Theme" Type="Self.Theme" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="id_subject" />
+      </Principal>
+      <Dependent Role="Theme">
+        <PropertyRef Name="id_subject" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="R_23">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
+    <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="login" />
+      </Principal>
+      <Dependent Role="Subject">
+        <PropertyRef Name="TeacherLogin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="R_11">
+    <End Role="Theme" Type="Self.Theme" Multiplicity="0..1" />
+    <End Role="Work" Type="Self.Work" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Theme">
+        <PropertyRef Name="id_theme" />
+      </Principal>
+      <Dependent Role="Work">
+        <PropertyRef Name="id_theme" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GroupSubject">
+    <End Role="StudyGroup" Type="Self.StudyGroup" Multiplicity="*" />
+    <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="AttendancesEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Attendance" EntityType="Self.Attendance" />
+    <EntitySet Name="Question" EntityType="Self.Question" />
+    <EntitySet Name="Student" EntityType="Self.Student" />
+    <EntitySet Name="StudyGroup" EntityType="Self.StudyGroup" />
+    <EntitySet Name="Subject" EntityType="Self.Subject" />
+    <EntitySet Name="Teacher" EntityType="Self.Teacher" />
+    <EntitySet Name="Theme" EntityType="Self.Theme" />
+    <EntitySet Name="Work" EntityType="Self.Work" />
+    <AssociationSet Name="R_19" Association="Self.R_19">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="Attendance" EntitySet="Attendance" />
+    </AssociationSet>
+    <AssociationSet Name="R_24" Association="Self.R_24">
+      <End Role="Work" EntitySet="Work" />
+      <End Role="Attendance" EntitySet="Attendance" />
+    </AssociationSet>
+    <AssociationSet Name="R_12" Association="Self.R_12">
+      <End Role="Work" EntitySet="Work" />
+      <End Role="Question" EntitySet="Question" />
+    </AssociationSet>
+    <AssociationSet Name="R_9" Association="Self.R_9">
+      <End Role="StudyGroup" EntitySet="StudyGroup" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+    <AssociationSet Name="R_22" Association="Self.R_22">
+      <End Role="Teacher" EntitySet="Teacher" />
+      <End Role="StudyGroup" EntitySet="StudyGroup" />
+    </AssociationSet>
+    <AssociationSet Name="R_10" Association="Self.R_10">
+      <End Role="Subject" EntitySet="Subject" />
+      <End Role="Theme" EntitySet="Theme" />
+    </AssociationSet>
+    <AssociationSet Name="R_23" Association="Self.R_23">
+      <End Role="Teacher" EntitySet="Teacher" />
+      <End Role="Subject" EntitySet="Subject" />
+    </AssociationSet>
+    <AssociationSet Name="R_11" Association="Self.R_11">
+      <End Role="Theme" EntitySet="Theme" />
+      <End Role="Work" EntitySet="Work" />
+    </AssociationSet>
+    <AssociationSet Name="GroupSubject" Association="Self.GroupSubject">
+      <End Role="StudyGroup" EntitySet="StudyGroup" />
+      <End Role="Subject" EntitySet="Subject" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

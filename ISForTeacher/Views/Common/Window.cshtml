@@ -1,0 +1,293 @@
+﻿@using ISForTeacher.Views;
+@using Newtonsoft.Json;
+
+@{
+    @model List<List<string>>
+
+    @helper addElement(string text, string attrWithValue="")
+    {
+        <div class="element" @attrWithValue>
+            <p>@text</p>
+        </div>
+    }
+
+}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Окно</title>
+    <link href="~/Content/styles/windowStyle.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="window">
+        <div id="head">
+            <div id="firstLine">
+                <div id="firstSquare" class="square"></div>
+                @{
+                    if (ViewBag.SmallHeader != null)
+                    {
+                        <p id="smallHeader" class="header">@ViewBag.SmallHeader</p>
+                    }
+                    else
+                    {
+                        <div id="fakeElem"></div>
+                    }
+                }
+            </div>
+            <div>
+                <div id="secondLine">
+                    @{
+                        bool ShowInputTextIsTrue = (ViewBag.ShowInputText != null) && (ViewBag.ShowInputText);
+                        string secondSquareStyle="";
+                        if (ShowInputTextIsTrue)
+                        {
+                            secondSquareStyle = "margin-top:-25px";
+                        }
+                        <div id="secondSquare" style="@secondSquareStyle" class="square"></div>
+                        if (ShowInputTextIsTrue)
+                        {
+                            <input id="inputText" type="text" />
+                        }
+                        else
+                        {
+                            if (ViewBag.BigHeader != null)
+                            {
+                                <p id="bigHeader" class="header">@ViewBag.BigHeader</p>
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+        @{
+            if ((ViewBag.ShowSelectionButtons != null) && ViewBag.ShowSelectionButtons)
+            {
+                <div id="selectionButtons">
+                    <div id="selectAll" class="selectionButton">
+                        <p>ВЫДЕЛИТЬ ВСЕХ</p>
+                    </div>
+                    <div id="unselectAll" class="selectionButton">
+                        <p>СНЯТЬ ВЫДЕЛЕНИЯ</p>
+                    </div>
+                </div>
+            }
+        }
+        @{
+            if ((Model != null) || (ViewBag.IsStartPage != null))
+            {
+                <div id="elementsContainer">
+                    @if ((ViewBag.IsStartPage != null) && ViewBag.IsStartPage)
+                    {
+                    <a href="@Url.Action(
+                                actionName: "Index",
+                                controllerName: "GroupesList"
+                            )">
+                        <div class="element">
+                            <p>Список групп</p>
+                        </div>
+                    </a>
+                    <a href="@Url.Action(
+                                actionName: "Index",
+                                controllerName: "DisciplinesList"
+                            )">
+                        <div class="element">
+                            <p>Список предметов</p>
+                        </div>
+                    </a>
+                    }
+                    else
+                    {
+                        if (ViewBag.ListElemsLinkType != null)
+                        {
+                            foreach (List<string> item in Model)
+                            {
+
+                                switch ((ListElemsLinkType)ViewBag.ListElemsLinkType)
+                                {
+                                    case ListElemsLinkType.lel_ToGroupe:
+                                        <a href="@Url.Action(
+                                            actionName: "Index",
+                                            controllerName: "Group",
+                                            routeValues: new
+                                            {
+                                                groupName = item[0],
+                                                groupId = item[1]
+                                            }
+                                        )">
+                                            @addElement(item[0])
+                                        </a>
+                                        break;
+                                    case ListElemsLinkType.lel_ToDiscipline:
+                                        <a href="@Url.Action(
+                                            actionName: "Index",
+                                            controllerName: "Discipline",
+                                            routeValues: new
+                                            {
+                                                disciplineName = item[0],
+                                                disciplineId = item[1]
+                                            }
+                                        )">
+                                            @addElement(item[0])
+                                        </a>
+                                        break;
+                                    case ListElemsLinkType.lel_ToAttendances:
+                                        string groupIdFromView = item[1];
+                                        string subjectIdFromView = item[1];
+                                        if (ViewBag.GroupId != null)
+                                        {
+                                            groupIdFromView = ViewBag.GroupId;
+                                        }
+                                        if (ViewBag.SubjectId != null)
+                                        {
+                                            subjectIdFromView = ViewBag.SubjectId;
+                                        }
+                                        <a href="@Url.Action(
+                                            actionName: "Index",
+                                            controllerName: "Attendances",
+                                            routeValues: new
+                                            {
+                                                groupId = groupIdFromView,
+                                                subjectId = subjectIdFromView
+                                            }
+                                        )">
+                                            @addElement(item[0])
+                                        </a>
+                                        break;
+                                    case ListElemsLinkType.lel_ToQuesions:
+                                        string idAttr = "studentId=" + item[1];
+                                        @addElement(item[0], idAttr)
+                                        break;
+                                }
+
+                            }
+                        }
+                    }
+                </div>
+            }
+        }
+            @{
+                if (ViewBag.ElementsListControllsType != null)
+                {
+                    <div id="elementsListControlls">
+                    @switch ((ElementsListControllsType)ViewBag.ElementsListControllsType)
+                    {
+                        case ElementsListControllsType.elc_AddRemove:
+                            <a href="@ViewBag.AddLink"><image id="add" class="elementsListButton" src="~/Content/images/Plus.png" /></a>
+                            <image id="remove" class="elementsListButton" src="~/Content/images/Cross.png" />
+                            break;
+                        case ElementsListControllsType.elc_generateQuestions:
+                            <image id="generateQuestions" subjectId="@ViewBag.SubjectId" src="~/Content/images/GenerateQuestions.jpg" />
+                            break;
+                    }
+                    </div>
+                }
+            }
+        <div>
+            <div id="thirdLine">
+                <div id="movingControlls">
+                    <div id="backAndCancelContainer">
+                        @{
+                            if (ViewBag.ShowBackCancel == null)
+                            {
+                                <div id="fakeElem2"></div>
+                            }
+                            else
+                            {
+                                switch ((ShowBackCancel)ViewBag.ShowBackCancel)
+                                {
+                                    case ShowBackCancel.sbc_Back:
+                                        <a href="@ViewBag.BacklLink" style="float:left;margin-left:20px">
+                                            <p id="back">Назад</p>
+                                        </a>
+                                        break;
+                                    case ShowBackCancel.sbc_Cancel:
+                                        <a href="@ViewBag.CancelLink" onclick="var mes='@ViewBag.CancelQuestion'; if(mes!='') return confirm()" style="float:left;margin-left:20px">
+                                            <p id="cancel">Отмена</p>
+                                        </a>
+                                        break;
+                                    case ShowBackCancel.sbc_BackAndCancel:
+                                        <a href="@ViewBag.CancelLink" onclick="return confirm('@ViewBag.CancelQuestion')">
+                                            <p id="cancel">Отмена</p>
+                                        </a>
+                                        <a href="@ViewBag.BacklLink">
+                                            <p id="back">Назад</p>
+                                        </a>
+                                        break;
+                                }
+                            }
+                        }
+                    </div>
+                    <div id="rightBottomControlls">
+                        @{
+                            if (ViewBag.RightBottomControllsType == null)
+                            {
+                                <div id="fakeElem"></div>
+                            }
+                            else
+                            {
+                                switch ((RightBottomControllsType)ViewBag.RightBottomControllsType)
+                                {
+                                    case RightBottomControllsType.rbc_Settings:
+                                        <img id="settings" src="~/Content/images/Cogwheel.png" />
+                                        break;
+                                    case RightBottomControllsType.rbc_Finish:
+                                        <a href="@ViewBag.NextLink"><p id="next">Завершить</p></a>
+                                        break;
+                                    case RightBottomControllsType.rbc_Next:
+                                        <a href="@ViewBag.NextLink"><p id="next">Далее</p></a>
+                                        break;
+                                }
+                            }
+                        }
+                    </div>
+                    <div id="forthSquare" class="square"></div>
+                    <div id="thirdSquare" class="square"></div>
+                    @{
+                        if (ViewBag.GroupOrDiscipline != null)
+                        {
+                            switch ((GroupOrDiscipline)ViewBag.GroupOrDiscipline)
+                            {
+                                case GroupOrDiscipline.god_Discipline:
+                                    <div id="settingsItems">
+                                        <div id="settingsItem1" class="settingsItem oneString">
+                                            <p>РПД</p>
+                                        </div>
+                                        <div id="settingsItem2" class="settingsItem">
+                                            <p>Переименовать предмет</p>
+                                        </div>
+                                    </div>
+                                    break;
+                                case GroupOrDiscipline.god_Group:
+                                    <div id="settingsItems">
+                                        <div id="settingsItem1" class="settingsItem">
+                                            <p>Список студентов</p>
+                                        </div>
+                                        <div id="settingsItem2" class="settingsItem">
+                                            <p>Переименовать группу</p>
+                                        </div>
+                                    </div>
+                                    break;
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script src="~/scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+@{
+    if (ViewBag.ListElemsLinkType != null && ViewBag.ListElemsLinkType == ListElemsLinkType.lel_ToQuesions)
+    {
+        <script src="~/scripts/questionsGeneration.js" type="text/javascript"></script>
+    }
+
+    if (ViewBag.RightBottomControllsType != null && ViewBag.RightBottomControllsType == RightBottomControllsType.rbc_Settings)
+    {
+        <script src="~/scripts/settings.js" type="text/javascript"></script>
+    }
+}
