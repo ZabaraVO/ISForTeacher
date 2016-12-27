@@ -50,3 +50,13 @@ Q:\Документы\Учебники\ДЗ\Инструментальные с�
 Q:\Документы\Учебники\ДЗ\Инструментальные средства ИС\ISForTeacher\ISForTeacher\bin\EntityFramework.SqlServer.xml
 Q:\Документы\Учебники\ДЗ\Инструментальные средства ИС\ISForTeacher\ISForTeacher\bin\Newtonsoft.Json.dll
 Q:\Документы\Учебники\ДЗ\Инструментальные средства ИС\ISForTeacher\ISForTeacher\bin\Newtonsoft.Json.xml
+Q:\Документы\Учебники\ДЗ\Инструментальные средства ИС\ISForTeacher\ISForTeacher\bin\Castle.Core.dll
+Q:\Документы\Учебники\ДЗ\Инструментальные средства ИС\ISForTeacher\ISForTeacher\bin\Moq.dll
+Q:\Документы\Учебники\ДЗ\Инструментальные средства ИС\ISForTeacher\ISForTeacher\bin\Castle.Core.xml
+Q:\Документы\Учебники\ДЗ\Инструментальные средства ИС\ISForTeacher\ISForTeacher\bin\Moq.xml
+Q:\Документы\Учебники\ДЗ\Инструментальные средства ИС\ISForTeacher\ISForTeacher\bin\UnitTestProject1.dll
+Q:\Документы\Учебники\ДЗ\Инструментальные средства ИС\ISForTeacher\ISForTeacher\bin\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+Q:\Документы\Учебники\ДЗ\Инструментальные средства ИС\ISForTeacher\ISForTeacher\bin\WebDriver.dll
+Q:\Документы\Учебники\ДЗ\Инструментальные средства ИС\ISForTeacher\ISForTeacher\bin\UnitTestProject1.pdb
+Q:\Документы\Учебники\ДЗ\Инструментальные средства ИС\ISForTeacher\ISForTeacher\bin\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+Q:\Документы\Учебники\ДЗ\Инструментальные средства ИС\ISForTeacher\ISForTeacher\bin\WebDriver.xml

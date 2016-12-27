@@ -1,32 +1,24 @@
-﻿using ISForTeacher.Views;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using ISForTeacher.Managers;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace ISForTeacher.Controllers
+namespace ISForTeacher.Managers
 {
-    public class QuestionsListController : Controller
+    public class WorksWithQuestionsGetter : IWorksWithQuestionsGetter
     {
-        // GET: QuestionsList
-        public ActionResult Index(int[] studentIds, string subjectId)
+        private AttendancesEntities Context;
+        public WorksWithQuestionsGetter(AttendancesEntities context)
         {
-            //JToken jt = JToken.Parse(jsonStudentIds);
-            WorksWithQuestionsGetter getter = new WorksWithQuestionsGetter(new AttendancesEntities());
-            return View(getter.getWorksToAskAbout(studentIds.ToList(), subjectId));
+            Context = context;
         }
-
-        /*private Dictionary<string,List<Work>> getWorksToAskAbout(List<int> studentIds, string subjectId)
+        public Dictionary<string, List<Work>> getWorksToAskAbout(List<int> studentIds, string subjectId)
         {
             AttendancesEntities context = new AttendancesEntities();
-            List<Student> students = context.Student.Where(s=>studentIds.Contains(s.idStudent)).ToList();
+            List<Student> students = context.Student.Where(s => studentIds.Contains(s.idStudent)).ToList();
             List<List<Work>> allNeededWorks = new List<List<Work>>();
-            for(int j = 0; j < students.Count; j++)
+            for (int j = 0; j < students.Count; j++)
             {
                 allNeededWorks.Add(new List<Work>());
             }
@@ -34,7 +26,7 @@ namespace ISForTeacher.Controllers
             Subject subject = context.Subject.First(e => e.id_subject.ToString() == subjectId);
             foreach (Theme theme in subject.Theme)
             {
-                foreach(Work work in theme.Work)
+                foreach (Work work in theme.Work)
                 {
                     foreach (Student student in students)
                     {
@@ -52,11 +44,11 @@ namespace ISForTeacher.Controllers
             int i = 0;
             foreach (List<Work> works in allNeededWorks)
             {
-                result.Add(students[i].FIO,works);
+                result.Add(students[i].FIO, works);
                 i++;
             }
-            
+
             return result;
-        }*/
+        }
     }
 }
